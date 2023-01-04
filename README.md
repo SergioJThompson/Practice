@@ -1,1 +1,1 @@
-# Every time I complete an exercise from exercism.org, I upload it here.
+# Every time I complete a practice exercise of any kind, I upload it here.
