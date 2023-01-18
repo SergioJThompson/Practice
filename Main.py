@@ -12,10 +12,12 @@ from pydub import AudioSegment
 
 import math
 
+from WindowWidthMgr import WindowWidthMgr
 
-def create_root_window():
+
+def create_root_window(window_mgr):
     root = Tk()
-    window_width = 302
+    window_width = window_mgr.width
     window_height = 50
     root.minsize(window_width, window_height)
     screen_width = root.winfo_screenwidth()
@@ -42,13 +44,33 @@ def create_root_window():
     root.grid_columnconfigure(1, weight=1)
     root.grid_rowconfigure(1, weight=1)
 
-    root.bind("<Configure>", lambda event: resize_text(event, file_loaded_lbl))
+    root.bind("<Configure>", lambda event: do_adjustments_if_window_width_changed(event, window_mgr, file_loaded_lbl))
 
     # TODO: make label text change responsively when window size increased/decreased
 
 
+def do_adjustments_if_window_width_changed(event, window_mgr, lbl):
+    new_window_width = event.widget.winfo_width()
+    old_window_width = window_mgr.width
+    if old_window_width != new_window_width:
+        window_mgr.width = new_window_width
+        resize_text(window_mgr.width, lbl)
+
+
 def file_loaded_msg_first_part():
     return "File loaded: "
+
+
+def can_be_truncated_further(txt):
+    truncatable = get_truncatable_part(txt)
+    truncated = truncate(truncatable)
+    return len(truncatable) > len(truncated)
+
+
+def truncate_as_far_as_necessary_or_possible_to_fit_in_window(txt, txt_font, window_width):
+    while not text_would_fit_in_window(txt, txt_font, window_width) and can_be_truncated_further(txt):
+        txt = truncate(txt)
+    return txt
 
 
 def get_truncatable_part(txt):
@@ -58,14 +80,10 @@ def get_truncatable_part(txt):
         return txt
 
 
-def resize_text(event, lbl):
+def resize_text(window_width, lbl):
     txt = lbl.cget("text")
-    truncatable_part = get_truncatable_part(lbl.cget("text"))
     txt_font = font.nametofont(lbl.cget("font"))
-    # window = lbl.master
-    while not text_would_fit_in_window(txt, txt_font, event):
-        truncated = truncate(truncatable_part)
-        txt = txt.replace(truncatable_part, truncated)
+    txt = truncate_as_far_as_necessary_or_possible_to_fit_in_window(txt, txt_font, window_width)
     lbl.config(text=txt)
 
 
@@ -85,10 +103,8 @@ def get_file_path_from_user():
 def file_loaded_msg(file_name, lbl):
     txt = file_loaded_msg_first_part() + file_name
     txt_font = font.nametofont(lbl.cget("font"))
-    window = lbl.master
-    while not text_would_fit_in_window(txt, txt_font, window):
-        file_name = truncate(file_name)
-        txt = file_loaded_msg_first_part() + file_name
+    window_width = lbl.master.winfo_width()
+    txt = truncate_as_far_as_necessary_or_possible_to_fit_in_window(txt, txt_font, window_width)
     return txt
 
 
@@ -96,9 +112,8 @@ def get_file_name_from_path(path):
     return path[path.rfind("/")+1:]
 
 
-def text_would_fit_in_window(txt, txt_font, window):
+def text_would_fit_in_window(txt, txt_font, window_width):
     text_width = txt_font.measure(txt)
-    window_width = window.winfo_width()
     return text_width + 2 < window_width
 
 
@@ -123,7 +138,8 @@ def get_wave_object(audio_file_path):
 
 
 def main():
-    create_root_window()
+    width_mgr = WindowWidthMgr(302)
+    create_root_window(width_mgr)
     mainloop()
 
 
