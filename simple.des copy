@@ -1,0 +1,45 @@
+NAME:   winth_arrival_treecross
+TAGS:   arrival no_monster_gen no_trap_gen
+ORIENT: float
+
+MAP
+     xx@xx
+     xt.tx
+     xt.tx
+     xt.tx
+    xxt.txx
+xxxxxtt.ttxxxxx
+xttttt...tttttx
+@......{......@
+xttttt...tttttx
+xxxxxtt.ttxxxxx
+    xxt.tx
+     xt.tx
+     xt.tx
+     xt.tx
+     xx@xx
+ENDMAP
+
+NAME: winth_arrival_x_windows
+TAGS: arrival no_rotate no_monster_gen no_trap_gen
+ORIENT: float
+PLACE: D:1
+
+MAP
+.................
+..cc.........cc..
+.c.cc.......cc.c.
+.cc.cc.....cc.cc.
+..cc.cc...cc.cc..
+...cc.cc.cc.cc...
+....cc.cnc.c.....
+.....cc...cc.....
+......n.{.n......
+.....cc...cc.....
+....cc.cnc.c.....
+...cc.cc.cc.cc...
+..cc.cc...cc.cc..
+.cc.cc.....cc.cc.
+.c.cc.......cc.c.
+..cc.........cc..
+ENDMAP
