@@ -46,6 +46,7 @@ def create_root_window(window_mgr):
 
     root.bind("<Configure>", lambda event: do_adjustments_if_window_width_changed(event, window_mgr, file_loaded_lbl))
 
+    # TODO: undo attempts to make label text responsive and start over
     # TODO: make label text change responsively when window size increased/decreased
 
 
