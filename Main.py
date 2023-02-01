@@ -3,16 +3,20 @@ from tkinter import font
 from tkinter import filedialog
 from os.path import expanduser
 from simpleaudio import WaveObject
-from Playbutton import Playbutton
+
 from pydub import AudioSegment
 from MsgLibrary import MsgLibrary
+from SoundMemoryBank import SoundMemoryBank
 from TextFitter import TextFitter
+
+
+# TODO: Implement new classes and remove the old stuff
 
 
 def create_root_window_and_widgets():
     root = Tk()
     window_width = 302
-    window_height = 80
+    window_height = 120
     root.minsize(window_width, window_height)
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
@@ -21,32 +25,39 @@ def create_root_window_and_widgets():
     root.geometry("%dx%d+%d+%d" % (window_width, window_height, x_coord, y_coord))
     root.title("Sonic Surge")
 
+    file_handler = SoundMemoryBank(path="")
     msgs = MsgLibrary
 
-    play_btn = Playbutton(root, text=msgs.play_button_txt())
-    choose_btn = Button(root, text=msgs.choose_button_txt(), command=lambda: change_file(play_btn, file_loaded_lbl))
-    stop_btn = Button(root, text=msgs.stop_btn_txt(), command=lambda: play_btn.stop())
-    pause_btn = Button(root, text=msgs.pause_btn_txt(), command=lambda: play_btn.pause())
+    play_btn = Button(root, text=msgs.play_button_txt(), command=file_handler.play)
+    choose_btn = Button(root, text=msgs.choose_button_txt(),
+                        command=lambda: stop_playback_and_load_file(file_handler, file_loaded_lbl))
+    stop_btn = Button(root, text=msgs.stop_btn_txt(),
+                      command=lambda: file_handler.stop())
+    reverse_btn = Button(root, text=msgs.reverse_btn_txt(),
+                         command=lambda: reverse_file(file_handler, reversed_lbl))
 
     file_loaded_lbl = Label(root, text=msgs.no_file_loaded_txt(), justify=CENTER)
+    reversed_lbl = Label(root, justify=CENTER)
 
-    file_loaded_lbl.grid(column=0, row=0, columnspan=3)
-    choose_btn.grid(column=1, row=1)
-    play_btn.grid(column=0, row=2)
-    pause_btn.grid(column=1, row=2)
-    stop_btn.grid(column=2, row=2)
+    file_loaded_lbl.grid(row=0, column=0, columnspan=3)
+    reversed_lbl.grid   (row=1, column=0, columnspan=3)
+    choose_btn.grid     (row=2, column=1)
+    play_btn.grid       (row=3, column=0)
+    reverse_btn.grid    (row=3, column=1)
+    stop_btn.grid       (row=3, column=2)
 
-    root.grid_columnconfigure(2, weight=1)
-    root.grid_rowconfigure(2, weight=1)
-
-    # TODO: make label text change responsively when window size increased/decreased
+    root.grid_columnconfigure   (2, weight=1)
+    root.grid_rowconfigure      (2, weight=1)
 
 
-def change_file(play_btn, file_loaded_lbl):
-    play_btn.stop()
+def stop_playback_and_load_file(file_handler, file_loaded_lbl):
+    file_handler.stop_if_playing()
+
     path = get_file_path_from_user()
-    if path != '':
-        play_btn.set_sound(get_wave_object(path))
+    file_handler.path = path
+
+    if path:    # If user didn't click cancel
+        file_handler.build_sound_from_path(path)
         file_name = get_file_name_from_path(path)
         file_loaded_lbl.config(text=file_loaded_msg(file_name, file_loaded_lbl))
 
@@ -67,9 +78,25 @@ def get_file_name_from_path(path):
     return path[path.rfind("/")+1:]
 
 
-def get_wave_object(audio_file_path):
-    seg = AudioSegment.from_file(audio_file_path)
+def seg_to_wave_obj(seg: AudioSegment):
     return WaveObject(seg.raw_data, seg.channels, seg.sample_width, seg.frame_rate)
+
+
+def reverse_file(file_mgr, reversed_lbl):
+    if file_mgr.path:
+        seg = AudioSegment.from_file(file_mgr.path).reverse()
+        file_mgr.build_sound_parts_from_audio_seg(seg)
+        change_reversed_file_lbl_txt(reversed_lbl)
+
+    # TODO: Move this function to FileHandler
+    # TODO: Save reversed file as FileHandler.reversed_wave_obj for easy access to both reversed and unreversed file
+
+
+def change_reversed_file_lbl_txt(reversed_lbl):
+    if not reversed_lbl.cget("text"):
+        reversed_lbl.config(text="Reversed file!")
+    else:
+        reversed_lbl.config(text="")
 
 
 def main():
@@ -78,6 +105,3 @@ def main():
 
 
 main()
-
-# TODO: pause button
-# TODO: backwards audio button!
