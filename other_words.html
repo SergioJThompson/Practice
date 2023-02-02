@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Other creators</title>
+  <style>
+    div {
+      font-size: 25px;
+      text-align:left;
+    }
+    h2 {
+      font-size: 40px;
+      text-align: center;
+    }
+    p {
+      font-size: 35px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Other creators and their work</h2>
+    <div id="creators-numbered-list">
+    </div>
+    <p id="get-random-creator">
+      Click here to get a random creator
+    </p>
+  <script>
+    const creators = "Fuck Theory\nBaruch Spinoza\nGilles Deleuze\nRobert Christgau\nZadie Smith";
+    document.getElementById("creators-numbered-list").innerHTML = creators;
+    document.getElementById("get-random-creator").innerHTML = creators;
+  </script>
+  <script src="make-hyperlinked-numbered-list-sorted-by-surname.js">
+
+  </script>
+</body>
+</html>
