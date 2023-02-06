@@ -1,0 +1,59 @@
+NAME:   winth_arrival_plant_tunnel
+TAGS:   arrival no_monster_gen no_trap_gen no_item_gen
+ORIENT: float
+SUBST:  ? = 12
+MONS:   plant, bush
+MAP
+   xG@GxG@Gx
+   x?.?x?.?x
+   x?.?x?.?x
+xxxx?.?x?.?xxxx
+G????.???.????G
+@......{......@
+G????.???.????G
+xxxx?.?x?.?xxxx
+   x?.?x?.?x
+   x?.?x?.?x
+   xG@GxG@Gx
+ENDMAP
+
+NAME:   winth_arrival_sandy_forest_lake
+TAGS:   arrival no_monster_gen no_trap_gen no_pool_fixup
+ORIENT: float
+FTILE:  S = floor_sand, t = floor_sand, @ = floor_sand
+MAP
+     tt@tt  
+    ttSSStt  
+   ttSWWWStt  
+  ttSWWWWWStt  
+ ttSWWWWWWWStt  
+ttSWWW...WWWStt 
+tSWWW..{..WWWSt 
+ttSWWW...WWWStt 
+ ttSWWWWWWWStt  
+  ttSWWWWWStt  
+   ttSWWWStt  
+    ttSSStt  
+     tt@tt  
+ENDMAP
+
+NAME:   winth_arrival_loot_maze
+TAGS:   arrival no_monster_gen no_trap_gen no_item_gen
+ORIENT: float
+NSUBST: ? : 1:w / 1:s / 1:$ / 1:%
+KFEAT:  w = web trap
+KITEM:  s = deep dwarf skeleton
+KITEM:  $ = gold q:20
+MAP
+ccccccccc
+c...c...c
+c.c.c.c.c
+c.c?c?c.c
+c.ccccc.c
+@...{...@
+c.ccccc.c
+c.c?c?c.c
+c.c.c.c.c
+c...c...c
+ccccccccc
+ENDMAP
