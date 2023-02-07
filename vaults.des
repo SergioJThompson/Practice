@@ -57,3 +57,26 @@ c.c.c.c.c
 c...c...c
 ccccccccc
 ENDMAP
+
+NAME:   winth_arrival_rainbow_demon_zot_arrow
+TAGS:   arrival no_monster_gen no_trap_gen no_item_gen
+ORIENT: float
+FTILE:  R = floor_demonic_lightred, Y = floor_demonic_yellow, G = floor_demonic_lightgreen, B = floor_demonic_lightblue, C = floor_demonic_lightcyan, M = floor_demonic_lightmagenta
+SUBST:  R = ., Y = ., G = ., B = ., C = ., M = .
+TILE:   c = wall_zot
+MAP
+    ccccc
+    cRRRc
+    cR{Rc
+    cYYYc
+    cYYYc
+    cGGGc
+cccccGGGccccc
+cBBBBBBBBBBBc
+ccBBBBBBBBBcc
+ ccCCCCCCCcc
+  ccCCCCCcc
+   ccMMMcc
+    ccMcc
+     c=c
+ENDMAP
