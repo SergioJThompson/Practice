@@ -1,1 +1,1 @@
-# Every time I complete a practice exercise of any kind, I upload it here.
+Here are the solutions to some practice exercises I've done.
