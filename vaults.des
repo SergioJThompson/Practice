@@ -17,7 +17,7 @@ xxxx?.?x?.?xxxx
    xG@GxG@Gx
 ENDMAP
 
-NAME:   winth_arrival_sandy_forest_lake
+NAME:   winth_arrival_forest_lake_small
 TAGS:   arrival no_monster_gen no_trap_gen no_pool_fixup
 ORIENT: float
 FTILE:  S = floor_sand, t = floor_sand, @ = floor_sand
@@ -79,4 +79,35 @@ ccBBBBBBBBBcc
    ccMMMcc
     ccMcc
      c=c
+ENDMAP
+
+NAME:    winth_arrival_forest_lake_large
+# Based on dpeg_arrival_central from large.des. Not quite large enough to belong there.
+TAGS:    arrival no_trap_gen no_pool_fixup
+FTILE:   . = floor_grass, t = floor_grass, @ = floor_grass
+ORIENT:  float
+MAP
+         tt@tt
+        tt...tt
+       tt.....tt
+      tt...]...tt
+     tt.........tt
+    tt...........tt
+   tt......W......tt
+  tt......WWW......tt
+ tt......WWWWW......tt
+tt......WWWwWWW......tt
+t......WWWwwwWWW......tt
+@.....WWWwwwwwWWW......@
+t......WWWwwwWWW......tt
+tt......WWWwWWW......tt
+ tt......WWWWW......tt
+  tt......WWW......tt
+   tt......W......tt
+    tt...........tt
+     tt.........tt
+      tt...{...tt
+       tt.....tt
+        tt...tt
+         tt@tt
 ENDMAP
