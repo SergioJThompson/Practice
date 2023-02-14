@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script>
+        let fileURL = "/essay-files/my-essay.html";
+        let fileName = fileURL.split("/").pop();
+        let linkHTML = '<a href="' + fileURL + '">' + fileName + '</a>';
+    </script>
+
+    <h1>The name of the file is:
+        <script>
+            document.write(linkHTML)
+        </script>
+    </h1>
+</body>
+</html>
