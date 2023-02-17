@@ -82,7 +82,7 @@ ccBBBBBBBBBcc
 ENDMAP
 
 NAME:    winth_arrival_forest_lake_large
-# Based on dpeg_arrival_central from large.des. Not quite large enough to belong there.
+# Based on dpeg_arrival_central from large.des, but not quite large enough to belong there.
 TAGS:    arrival no_trap_gen no_pool_fixup
 FTILE:   . = floor_grass, t = floor_grass, @ = floor_grass
 ORIENT:  float
@@ -97,9 +97,9 @@ MAP
   tt......WWW......tt
  tt......WWWWW......tt
 tt......WWWwWWW......tt
-t......WWWwwwWWW......tt
-@.....WWWwwwwwWWW......@
-t......WWWwwwWWW......tt
+t......WWWwwwWWW......t
+@.....WWWwwwwwWWW.....@
+t......WWWwwwWWW......t
 tt......WWWwWWW......tt
  tt......WWWWW......tt
   tt......WWW......tt
@@ -111,3 +111,107 @@ tt......WWWwWWW......tt
         tt...tt
          tt@tt
 ENDMAP
+
+winth_arrival_terracotta_army
+TAGS:   arrival no_monster_gen no_trap_gen
+ORIENT: float
+TILE:   S = dngn_statue_archer / dngn_statue_naga / dngn_statue_axe / dngn_statue_polearm / dngn_statue_sigmund
+: set_feature_name("granite_statue", "Commander of the Terracotta Army")
+MAP
+.....
+.S.S.........
+.......S.S...
+.S.S.........
+.......S.S...
+.S.S.{.....G.
+.......S.S...
+.S.S.........
+.......S.S...
+.S.S.........
+.....
+ENDMAP
+
+NAME:   winth_arrival_hourglass
+TAGS:   arrival no_monster_gen no_item_gen no_rotate
+TILE:   : = floor_sand
+ORIENT: float
+MAP
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ xx{........................xx 
+  xx:::::::::::::::::::::::xx  
+   xx:::::::::::::::::::::xx   
+    xx:::::::::::::::::::xx    
+     xx:::::::::::::::::xx     
+      xx:::::::::::::::xx      
+       xx:::::::::::::xx       
+        xx:::::::::::xx        
+         xx:::::::::xx         
+          xx:::::::xx          
+           xx:::::xx           
+            xx:::xx            
+             xx:xx                     
+              x:x
+             xx:xx
+            xx...xx
+           xx.....xx
+          xx...:...xx
+         xx.........xx
+        xx...........xx
+       xx......:......xx
+      xx...............xx
+     xx.................xx
+    xx.........:.........xx
+   xx.....................xx
+  xx..........:::..........xx
+ xx.........:::::::.........xx
+xxxxxxxxxxxxxxx+xxxxxxxxxxxxxxx
+ENDMAP
+
+NAME: winth_arrival_pulsing_orbs
+ORIENT: float
+TAGS:   arrival no_monster_gen no_item_gen
+KPROP:  FPMV = no_tele_into
+MARKER: F = lua:fog_machine { cloud_type = "noxious fumes", pow_min = 3, \
+                              pow_max = 3, delay = 1, size = 1, \
+                              excl_rad = -1 }
+MARKER: P = lua:fog_machine { cloud_type = "foul pestilence", pow_min = 3, \
+                              pow_max = 3, delay = 1, size = 1, \
+                              excl_rad = -1 }
+MARKER: M = lua:fog_machine { cloud_type = "mutagenic fog", pow_min = 3, \
+                              pow_max = 3, delay = 1, size = 1, \
+                              excl_rad = -1 }
+MARKER: Z = lua:fog_machine { cloud_type = "freezing vapour", pow_min = 3, \
+                              pow_max = 3, delay = 1, size = 1, \
+                              excl_rad = -1 }
+MAP
+ ......
+..mmmm..
+.mmFFmm.
+.mFFFFm.
+.mFFFFm.
+.mmFFmm.
+..mmmm...
+ .............
+      ...mmmm..
+       .mmZZmm.
+       .mZZZZm.
+       .mZZZZm.
+       .mmZZmm.
+       ..mmmm...
+        ......{......
+             ...mmmm..
+              .mmMMmm.
+              .mMMMMm.
+              .mMMMMm.
+              .mmMMmm.
+              ..mmmm...
+               .............
+                    ...mmmm..
+                     .mmPPmm.
+                     .mPPPPm.
+                     .mPPPPm.
+                     .mmPPmm.
+                     ..mmmm..
+                      ......
+ENDMAP
+
