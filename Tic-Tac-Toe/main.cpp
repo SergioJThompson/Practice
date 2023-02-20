@@ -1,8 +1,9 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "object.cpp"
 
-void loop(SDL_Window *window, SDL_Surface *image_surface) {
+void loop(SDL_Window *window, SDL_Surface *image_surface, Object square_arr[], int arr_size) {
     bool quit = false;
     SDL_Event event;
     while (!quit) {
@@ -16,6 +17,9 @@ void loop(SDL_Window *window, SDL_Surface *image_surface) {
             }
         }
         SDL_BlitSurface(image_surface, nullptr, SDL_GetWindowSurface(window), nullptr);
+        for (int i = 0; i < arr_size; i++) {
+            square_arr[i].draw(SDL_GetWindowSurface(window));
+        }
         SDL_UpdateWindowSurface(window);
     }
 }
@@ -26,10 +30,25 @@ int main() {
         return -1;
     }
 
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+        std::cout << "Failed to initialize SDL_image\n";
+        return -1;
+    }
+
+    SDL_Surface *image_surface = IMG_Load("/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe/images/grid.jpg");
+
+    if (!image_surface) {
+        std::cout << "Failed to load image\n";
+        return -1;
+    }
+
+    int image_w = image_surface->w;
+    int image_h = image_surface->h;
+
     SDL_Window *window = SDL_CreateWindow("SDL2 Window",
                                           SDL_WINDOWPOS_CENTERED,
                                           SDL_WINDOWPOS_CENTERED,
-                                          500, 500,
+                                          image_w, image_h,
                                           SDL_WINDOW_SHOWN);
 
     if (!window) {
@@ -37,20 +56,18 @@ int main() {
         return -1;
     }
 
-    SDL_Surface *window_surface = SDL_GetWindowSurface(window);
 
-    if (!window_surface) {
-        std::cout << "Failed to get the surface from the window\n";
-        return -1;
-    }
+    SDL_Surface* sprite_surface = IMG_Load("/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe/images/x.jpg");
 
-    SDL_Surface *image_surface = IMG_Load("image.png");
-    if (!image_surface) {
-        std::cout << "Failed to load image\n";
-        return -1;
-    }
+    Object squareA1(sprite_surface, 0, 159);
+    Object squareB1(sprite_surface, 0, 300);
+    Object squareC1(sprite_surface, 0, 450);
 
-    loop(window, image_surface);
+    Object square_arr[3] = {
+        squareA1, squareB1, squareC1
+    };
+
+    loop(window, image_surface, square_arr, 3);
 
     SDL_FreeSurface(image_surface);
     SDL_DestroyWindow(window);

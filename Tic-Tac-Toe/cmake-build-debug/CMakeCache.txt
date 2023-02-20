@@ -220,7 +220,7 @@ SDL2Test_IS_TOP_LEVEL:STATIC=ON
 SDL2Test_SOURCE_DIR:STATIC=/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe
 
 //The directory containing a CMake configuration file for SDL2.
-SDL2_DIR:PATH=/Library/Frameworks/SDL2.framework/Resources/CMake
+SDL2_DIR:PATH=/usr/local/lib/cmake/SDL2
 
 //The directory containing a CMake configuration file for SDL2_image.
 SDL2_image_DIR:PATH=/usr/local/lib/cmake/SDL2_image
