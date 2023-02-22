@@ -22,11 +22,13 @@ public:
                 m_surface = IMG_Load("/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe/images/o.png");
                 m_imageState = O;
                 break;
-            case 2:
-                m_imageState = O;
-                break;
-            case 0:
+            case O:
                 m_imageState = Empty;
+                break;
+            case Empty:
+                m_surface = IMG_Load("/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe/images/x.png");
+                m_imageState = X;
+                break;
             default:
                 break;
         }

@@ -33,22 +33,22 @@ void loop(SDL_Window *window, SDL_Surface *image_surface, Object square_arr[], i
 }
 
 int main() {
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        std::cout << "Failed to initialize the SDL2 library\n";
-        return -1;
-    }
-
-    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
-        std::cout << "Failed to initialize SDL_image\n";
-        return -1;
-    }
+//    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+//        std::cout << "Failed to initialize the SDL2 library\n";
+//        return -1;
+//    }
+//
+//    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+//        std::cout << "Failed to initialize SDL_image\n";
+//        return -1;
+//    }
 
     SDL_Surface *image_surface = IMG_Load("/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe/images/grid.jpg");
 
-    if (!image_surface) {
-        std::cout << "Failed to load image\n";
-        return -1;
-    }
+//    if (!image_surface) {
+//        std::cout << "Failed to load image\n";
+//        return -1;
+//    }
 
     int image_w = image_surface->w;
     int image_h = image_surface->h;
@@ -59,10 +59,10 @@ int main() {
                                           image_w, image_h,
                                           SDL_WINDOW_SHOWN);
 
-    if (!window) {
-        std::cout << "Failed to create window\n";
-        return -1;
-    }
+//    if (!window) {
+//        std::cout << "Failed to create window\n";
+//        return -1;
+//    }
 
 
     SDL_Surface* sprite_surface = IMG_Load("/Users/sergiojthompson/Programs/C++/Tic-Tac-Toe/images/x.png");
