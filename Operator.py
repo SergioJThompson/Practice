@@ -1,6 +1,5 @@
 # TODO: Set action label text to "" when file loaded. Or maybe "File loaded!"
 
-from pydub import AudioSegment
 from tkinter import filedialog
 from os.path import expanduser
 
@@ -13,10 +12,15 @@ from Tags import Tags
 class Operator:
 
     @staticmethod
+    def pause_if_playing(player):
+        player.pause_if_playing()
+
+    @staticmethod
     def stop_playback_and_load_file_and_update_labels(bank, player, loaded_lbl, reversed_file_lbl):
         player.stop_if_playing()
 
-        path = filedialog.askopenfilename(initialdir=expanduser("~/Music/"), filetypes=[("MP3 files", "*.mp3")])
+        path = filedialog.askopenfilename(initialdir=expanduser("/Users/sergiojthompson/Documents/programs/sonic-surge/test_files"), filetypes=[("MP3 files", "*.mp3")])
+        # TODO: Change that directory to ~/Music/ when program is finished
         if path:  # If user didn't click cancel
             sound = SoundBuilder.build_sound_from_path(path)
             bank.clear()
@@ -29,54 +33,55 @@ class Operator:
             reversed_file_lbl.config(text="File loaded!")
 
     @staticmethod
-    def stop_playback_and_lower_frames_and_update_label(bank, player, action_lbl):
+    def stop_playback_and_alter_sample_rate_and_update_label(bank, player, action_lbl):
+        if not player.sound:
+            action_lbl.config(text="No file to modify!")
+            return
+
         player.stop_if_playing()
 
-        if bank.has_sound_with_exact_tags({Tags.FRAMES_LOWERED}):
-            lowered_sound = bank.get_sound_with_exact_tags({Tags.FRAMES_LOWERED})
-            original_sound = bank.get_sound_with_exact_tags({})
-            if player.sound == lowered_sound:
-                player.sound = original_sound
-                action_lbl.config(text="Raised sample rate back to normal!")
-            elif player.sound == original_sound:
-                player.sound = lowered_sound
-                action_lbl.config(text="Lowered sample rate!")
-        elif bank.has_sound_with_exact_tags({}):
-            seg = AudioSegment.from_file(bank.get_sound_with_exact_tags({}))    # TODO: get file
-            lowered_seg = seg.set_frame_rate(int (seg.frame_rate / 4))
-            # TODO: Get the lowest sample rate that'll work and use that.
-            lowered_sound = SoundBuilder.build_sound_from_audio_seg(lowered_seg)
-            lowered_sound.path = player.sound.path
-            bank.add(lowered_seg)
-            player.sound = lowered_sound
-            action_lbl.config(text="Lowered sample rate!")
+        altered_tags = set(player.sound.tags)
+        SoundBuilder.add_or_remove(Tags.FRAMES_LOWERED, altered_tags)
+
+        if bank.has_sound_with_exact_tags(altered_tags):
+            player.sound = bank.get_sound_with_exact_tags(altered_tags)
         else:
-            action_lbl.config(text="No file to modify!")
+            if Tags.FRAMES_LOWERED in altered_tags:
+                new_sample_rate = 800
+                altered_sound = SoundBuilder.build_new_sound_with_altered_sample_rate(player.sound, new_sample_rate)
+            else:
+                sound_to_alter = bank.get_sound_with_exact_tags(set())
+                for tag in altered_tags:
+                    sound_to_alter = Operator.do_operation(sound_to_alter, tag)  # TODO: Write a method that does a different operation based on the tag
+                altered_sound = sound_to_alter
+            bank.add(altered_sound)
+            player.sound = altered_sound
+
+        action_lbl.config(text="Altered sample rate of file!")
 
     @staticmethod
     def stop_playback_and_reverse_file_and_update_label(bank, player, action_lbl):
-        player.stop_if_playing()
-        if bank.has_sound_with_exact_tags({Tags.REVERSED}):
-            reversed_sound = bank.get_sound_with_exact_tags({Tags.REVERSED})
-            original_sound = bank.get_sound_with_exact_tags({})
-            if player.sound == reversed_sound:
-                player.sound = original_sound
-                action_lbl.config(text="Unreversed file!")
-            elif player.sound == original_sound:
-                player.sound = sounds[Tags.REVERSED]
-                action_lbl.config(text="Reversed file!")
-        elif bank.has_sound_with_exact_tags({}):
-            seg = AudioSegment.from_file(bank.get_sound_with_exact_tags({}))    # TODO: get file
-            reversed_seg = AudioSegment.from_file(player.sound.path).reverse()
-            reversed_sound = SoundBuilder.build_sound_from_audio_seg(reversed_seg)
-            bank.add(Tags.REVERSED, reversed_sound)
-            player.sound = reversed_sound
-            action_lbl.config(text="Reversed file!")
-        else:
+        if not player.sound:
             action_lbl.config(text="No file to reverse!")
+            return
 
-    # TODO: Combining reverse and lower_frames loading actions into one
-    # TODO: Consider what to do in the case a de-modification of a file with multiple tags, i.e. one tag being removed
+        player.stop_if_playing()
+
+        reversed_tags = set(player.sound.tags)
+        SoundBuilder.add_or_remove(Tags.REVERSED, reversed_tags)
+
+        if bank.has_sound_with_exact_tags(reversed_tags):
+            player.sound = bank.get_sound_with_exact_tags(reversed_tags)
+        else:
+            reversed_sound = SoundBuilder.build_reversed(player.sound)
+            bank.add(reversed_sound)
+            player.sound = reversed_sound
+
+        action_lbl.config(text="Reversed file!")
+
+    # TODO: Combine the above two methods into one
+
+    # TODO: Build from original instead of working backwards from mod if sample rate lowered
 
     @staticmethod
     def stop_playback_and_update_label(player, lbl):
@@ -94,3 +99,8 @@ class Operator:
         else:
             lbl.config(text=Msgs.no_file_to_play())
         # TODO: Say "Finished playing" when file finishes playing
+
+    @staticmethod
+    def do_operation(sound, tag):
+        if tag == Tags.REVERSED:
+            return Operator.reverse_file(sound)     # TODO: Write this
