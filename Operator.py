@@ -16,11 +16,43 @@ class Operator:
         player.pause_if_playing()
 
     @staticmethod
-    def do_operation(sound, tag):  # TODO: Write these two methods
+    def do_operation(bank, sound, tag):
         if tag == Tags.REVERSED:
-            return Operator.reverse(sound)
+            return Operator.get_reverse(bank, sound)
         if tag == Tags.FRAMES_LOWERED:
-            return Operator.modify_sample_rate(sound)
+            return Operator.get_altered_sample_rate(bank, sound)
+
+    @staticmethod
+    def get_reverse(bank, sound):
+        reversed_tags = set(sound)
+        SoundBuilder.add_or_remove(Tags.REVERSED, reversed_tags)
+
+        if bank.has_sound_with_exact_tags(reversed_tags):
+            sound = bank.get_sound_with_exact_tags(reversed_tags)
+        else:
+            reversed_sound = SoundBuilder.build_reversed(player.sound)
+            bank.add(reversed_sound)
+            sound = reversed_sound
+        return sound
+
+    @staticmethod
+    def get_altered_sample_rate(bank, sound):
+        altered_tags = set(sound)
+        SoundBuilder.add_or_remove(Tags.FRAMES_LOWERED, altered_tags)
+
+        if bank.has_sound_with_exact_tags(altered_tags):
+            sound = bank.get_sound_with_exact_tags(altered_tags)
+        else:
+            if Tags.FRAMES_LOWERED in altered_tags:
+                new_sample_rate = 800
+                altered_sound = SoundBuilder.build_new_sound_with_altered_sample_rate(player.sound, new_sample_rate)
+            else:
+                sound_to_alter = bank.get_sound_with_exact_tags(set())
+                for tag in altered_tags:
+                    sound_to_alter = Operator.do_operation(bank, sound_to_alter, tag)
+                altered_sound = sound_to_alter
+            bank.add(altered_sound)
+            return altered_sound
 
     @staticmethod
     def stop_playback_and_load_file_and_update_labels(bank, player, loaded_lbl, reversed_file_lbl):
@@ -44,26 +76,8 @@ class Operator:
         if not player.sound:
             action_lbl.config(text="No file to modify!")
             return
-
         player.stop_if_playing()
-
-        altered_tags = set(player.sound.tags)
-        SoundBuilder.add_or_remove(Tags.FRAMES_LOWERED, altered_tags)
-
-        if bank.has_sound_with_exact_tags(altered_tags):
-            player.sound = bank.get_sound_with_exact_tags(altered_tags)
-        else:
-            if Tags.FRAMES_LOWERED in altered_tags:
-                new_sample_rate = 800
-                altered_sound = SoundBuilder.build_new_sound_with_altered_sample_rate(player.sound, new_sample_rate)
-            else:
-                sound_to_alter = bank.get_sound_with_exact_tags(set())
-                for tag in altered_tags:
-                    sound_to_alter = Operator.do_operation(sound_to_alter, tag)  # TODO: Write a method that does a different operation based on the tag
-                altered_sound = sound_to_alter
-            bank.add(altered_sound)
-            player.sound = altered_sound
-
+        ###
         action_lbl.config(text="Altered sample rate of file!")
 
     @staticmethod
@@ -71,19 +85,8 @@ class Operator:
         if not player.sound:
             action_lbl.config(text="No file to reverse!")
             return
-
         player.stop_if_playing()
-
-        reversed_tags = set(player.sound.tags)
-        SoundBuilder.add_or_remove(Tags.REVERSED, reversed_tags)
-
-        if bank.has_sound_with_exact_tags(reversed_tags):
-            player.sound = bank.get_sound_with_exact_tags(reversed_tags)
-        else:
-            reversed_sound = SoundBuilder.build_reversed(player.sound)
-            bank.add(reversed_sound)
-            player.sound = reversed_sound
-
+        ###
         action_lbl.config(text="Reversed file!")
 
     # TODO: Combine the above two methods into one
@@ -106,8 +109,3 @@ class Operator:
         else:
             lbl.config(text=Msgs.no_file_to_play())
         # TODO: Say "Finished playing" when file finishes playing
-
-    @staticmethod
-    def do_operation(sound, tag):
-        if tag == Tags.REVERSED:
-            return Operator.reverse_file(sound)     # TODO: Write this
