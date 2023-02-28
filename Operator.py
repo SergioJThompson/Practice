@@ -16,6 +16,13 @@ class Operator:
         player.pause_if_playing()
 
     @staticmethod
+    def do_operation(sound, tag):  # TODO: Write these two methods
+        if tag == Tags.REVERSED:
+            return Operator.reverse(sound)
+        if tag == Tags.FRAMES_LOWERED:
+            return Operator.modify_sample_rate(sound)
+
+    @staticmethod
     def stop_playback_and_load_file_and_update_labels(bank, player, loaded_lbl, reversed_file_lbl):
         player.stop_if_playing()
 
