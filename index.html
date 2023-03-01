@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 150px;
+      background-repeat: repeat-y;
+      background-size: auto 100%;
+      background-color: black;
+    }
+
+    body::before {
+      left: 0;
+    }
+
+    body::after {
+      right: 0;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    img {
+      width: 700px;
+    }
+
+    .link-container {
+      /*border: 5px solid black;*/
+      /*display: inline-block;*/
+      /*padding: 5px 5px;*/
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .links-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-right: 40px;
+      font-size: 30px;
+    }
+
+    .links-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 40px;
+      font-size: 30px;
+    }
+
+  </style>
+  <title>Sergio Thompson</title>
+</head>
+<body>
+<div class="image-container">
+  <div class="links-left">
+    <div class="link-container">
+      <a href="#">Music</a>
+    </div>
+    <div class="link-container">
+      <a href="essays.html">Essays</a>
+    </div>
+    <div class="link-container">
+      <a href="#">Programs</a>
+    </div>
+  </div>
+  <img src="/images/logos/logo-corporate-big.png" alt="Sergio Thompson">
+  <div class="links-right">
+    <div class="link-container">
+      <a href="#" class="link-4">Visual art</a>
+    </div>
+    <div class="link-container">
+      <a href="#">Other stuff</a>
+    </div>
+    <div class="link-container">
+      <a href="#">About</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

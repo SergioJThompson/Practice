@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Essays</title>
+  <style>
+    a {
+      margin-left: 115px;
+    }
+
+    body {
+      font-family: Times, serif;
+      font-size: 30px;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 150px;
+      background-repeat: repeat-y;
+      background-size: auto 100%;
+      background-color: black;
+    }
+
+    body::before {
+      left: 0;
+    }
+
+    body::after {
+      right: 0;
+    }
+
+    h1 {
+      font-size: 90px;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .search-container {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .search-container input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      border: solid 1px;
+      width: 60%;
+      margin-right: 10px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+    }
+
+    .search-container button {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px;
+      border-radius: 10px;
+    }
+
+    .search-container button:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>
+  All my essays
+</h1>
+
+<div class="search-container">
+  <label for="search-input"></label><input type="text" placeholder="Search..." id="search-input">
+  <button>Search</button>
+</div>
+
+<div id="essay-links">
+  <div class="section">
+    <h2>Section 1</h2>
+    <ul>
+      <li><a href="#">Sergio's Example Essay</a></li>
+      <li><a href="#">Sergio's Analytical Article</a></li>
+      <li><a href="#">Sergio's Thoughtful Thesis</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Section 2</h2>
+    <ul>
+      <li><a href="#">Sergio's Pondersome Passage</a></li>
+      <li><a href="#">Sergio's Pulchritudinous Poem</a></li>
+      <li><a href="#">Sergio's Creative Critique</a></li>
+      <li><a href="#">Sergio's Truthful Treatise</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Section 3</h2>
+    <ul>
+      <li><a href="#">Sergio's Wryly Wrought Writing</a></li>
+    </ul>
+  </div>
+</div>
+
+
+</body>
+
+<script src="/js/search.js"></script>
+
+</html>
