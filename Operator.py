@@ -5,7 +5,7 @@ from os.path import expanduser
 
 from SoundBuilder import SoundBuilder
 from TextEditor import TextEditor
-from MsgLibrary import MsgLibrary as Msgs
+from MsgLibrary import MsgLibrary as Msgs, MsgLibrary
 from Tags import Tags
 
 
@@ -72,24 +72,13 @@ class Operator:
             reversed_file_lbl.config(text="File loaded!")
 
     @staticmethod
-    def stop_playback_and_alter_sample_rate_and_update_label(bank, player, action_lbl):
+    def stop_playback_and_change_sound_and_update_label(bank, player, tag, action_lbl):
         if not player.sound:
-            action_lbl.config(text="No file to modify!")
+            action_lbl.config(text=MsgLibrary.no_file_to_alter(tag))
             return
         player.stop_if_playing()
-        ###
-        action_lbl.config(text="Altered sample rate of file!")
-
-    @staticmethod
-    def stop_playback_and_reverse_file_and_update_label(bank, player, action_lbl):
-        if not player.sound:
-            action_lbl.config(text="No file to reverse!")
-            return
-        player.stop_if_playing()
-        ###
-        action_lbl.config(text="Reversed file!")
-
-    # TODO: Combine the above two methods into one
+        Operator.do_operation(bank, player, tag)
+        action_lbl.config(text=MsgLibrary.altered_file(tag))
 
     # TODO: Build from original instead of working backwards from mod if sample rate lowered
 
