@@ -40,9 +40,6 @@
     }
 
     .link-container {
-      /*border: 5px solid black;*/
-      /*display: inline-block;*/
-      /*padding: 5px 5px;*/
       margin-top: 20px;
       margin-bottom: 20px;
     }
@@ -63,6 +60,11 @@
       font-size: 30px;
     }
 
+    #logo-img {
+      height: 700px;
+      object-fit: contain;
+    }
+
   </style>
   <title>Sergio Thompson</title>
 </head>
@@ -79,7 +81,7 @@
       <a href="#">Programs</a>
     </div>
   </div>
-  <img src="/images/logos/logo-corporate-big.png" alt="Sergio Thompson">
+  <img id="logo-img" src="" alt="Sergio Thompson">
   <div class="links-right">
     <div class="link-container">
       <a href="#" class="link-4">Visual art</a>
@@ -92,5 +94,6 @@
     </div>
   </div>
 </div>
+<script src="/js/get-random-logo.js"></script>
 </body>
 </html>
