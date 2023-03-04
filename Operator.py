@@ -17,11 +17,9 @@ class Operator:
 
     @staticmethod
     def get_altered_sound(bank, sound, tag):
-        print(type(tag), tag)
-        print(type(Tags.REVERSED), Tags.REVERSED)
-        if tag == Tags.REVERSED:
+        if tag.value == Tags.REVERSED.value:
             return Operator.get_reverse(bank, sound)
-        if tag == Tags.FRAMES_LOWERED:
+        if tag.value == Tags.FRAMES_LOWERED.value:
             return Operator.get_altered_sample_rate(bank, sound)
         raise ValueError("Couldn't identify tag")
 
@@ -47,8 +45,10 @@ class Operator:
             altered_sound = bank.get_sound_with_exact_tags(altered_tags)
         else:
             if Tags.FRAMES_LOWERED in altered_tags:
-                new_sample_rate = 800
+                new_sample_rate = 8000
                 altered_sound = SoundBuilder.build_new_sound_with_altered_sample_rate(sound, new_sample_rate)
+                # TODO: Fix sound quality not improving with sample rate -> reverse -> sample rate
+                # TODO: Change "sample rate lowered!" message when clicking sample rate button for 2nd time
             else:
                 sound_to_alter = bank.get_sound_with_exact_tags(set())
                 for tag in altered_tags:
