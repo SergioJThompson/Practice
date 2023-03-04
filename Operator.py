@@ -16,43 +16,46 @@ class Operator:
         player.pause_if_playing()
 
     @staticmethod
-    def do_operation(bank, sound, tag):
+    def get_altered_sound(bank, sound, tag):
+        print(type(tag), tag)
+        print(type(Tags.REVERSED), Tags.REVERSED)
         if tag == Tags.REVERSED:
             return Operator.get_reverse(bank, sound)
         if tag == Tags.FRAMES_LOWERED:
             return Operator.get_altered_sample_rate(bank, sound)
+        raise ValueError("Couldn't identify tag")
 
     @staticmethod
     def get_reverse(bank, sound):
-        reversed_tags = set(sound)
+        reversed_tags = set(sound.tags)
         SoundBuilder.add_or_remove(Tags.REVERSED, reversed_tags)
 
         if bank.has_sound_with_exact_tags(reversed_tags):
             sound = bank.get_sound_with_exact_tags(reversed_tags)
         else:
-            reversed_sound = SoundBuilder.build_reversed(player.sound)
+            reversed_sound = SoundBuilder.build_reversed(sound)
             bank.add(reversed_sound)
             sound = reversed_sound
         return sound
 
     @staticmethod
     def get_altered_sample_rate(bank, sound):
-        altered_tags = set(sound)
+        altered_tags = set(sound.tags)
         SoundBuilder.add_or_remove(Tags.FRAMES_LOWERED, altered_tags)
 
         if bank.has_sound_with_exact_tags(altered_tags):
-            sound = bank.get_sound_with_exact_tags(altered_tags)
+            altered_sound = bank.get_sound_with_exact_tags(altered_tags)
         else:
             if Tags.FRAMES_LOWERED in altered_tags:
                 new_sample_rate = 800
-                altered_sound = SoundBuilder.build_new_sound_with_altered_sample_rate(player.sound, new_sample_rate)
+                altered_sound = SoundBuilder.build_new_sound_with_altered_sample_rate(sound, new_sample_rate)
             else:
                 sound_to_alter = bank.get_sound_with_exact_tags(set())
                 for tag in altered_tags:
-                    sound_to_alter = Operator.do_operation(bank, sound_to_alter, tag)
+                    sound_to_alter = Operator.get_altered_sound(bank, sound_to_alter, tag)
                 altered_sound = sound_to_alter
             bank.add(altered_sound)
-            return altered_sound
+        return altered_sound
 
     @staticmethod
     def stop_playback_and_load_file_and_update_labels(bank, player, loaded_lbl, reversed_file_lbl):
@@ -77,10 +80,9 @@ class Operator:
             action_lbl.config(text=MsgLibrary.no_file_to_alter(tag))
             return
         player.stop_if_playing()
-        Operator.do_operation(bank, player, tag)
+        altered_sound = Operator.get_altered_sound(bank, player.sound, tag)
+        player.sound = altered_sound
         action_lbl.config(text=MsgLibrary.altered_file(tag))
-
-    # TODO: Build from original instead of working backwards from mod if sample rate lowered
 
     @staticmethod
     def stop_playback_and_update_label(player, lbl):
