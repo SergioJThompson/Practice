@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Text</title>
+    <style>
+        #input {
+            color: black;
+        }
+        #output {
+            font-size: 200px;
+            word-wrap: break-word;
+        }
+    </style>
+    <script>
+        var inputText = "";
+        var outputText = "";
+
+        function updateOutput() {
+            outputText = inputText;
+            document.getElementById("output").innerHTML = outputText;
+        }
+
+        function handleKeyDown(event) {
+                updateOutput();
+        }
+
+        function handleInputChange(event) {
+            inputText = event.target.value;
+            updateOutput();
+        }
+    </script>
+</head>
+<body>
+<label for="input">Enter text:</label>
+<input type="text" id="input" oninput="handleInputChange(event)" onkeydown="handleKeyDown(event)"><br>
+<label for="output">Output:</label>
+<div id="output"></div>
+</body>
+</html>
