@@ -1,0 +1,101 @@
+Rank,Title,Artist,Country,Year,AvgRating,NumRatings
+1,What's Going On,Marvin Gaye,us,1971,85.30181122,1841
+2,Pet Sounds,The Beach Boys,us,1966,87.98929596,3125
+3,Blue,Joni Mitchell,ca,1971,84.47116089,1425
+4,Songs In The Key Of Life,Stevie Wonder,us,1976,85.00650787,1255
+5,Abbey Road,The Beatles,uk,1969,91.73200989,4404
+6,Nevermind,Nirvana (US),us,1991,86.65548706,4141
+7,Rumours,Fleetwood Mac,un,1977,86.25585175,2461
+8,Purple Rain,Prince And The Revolution,us,1984,83.37147522,1545
+9,Blood On The Tracks,Bob Dylan,us,1975,87.10786438,2094
+10,The Miseducation Of Lauryn Hill,Lauryn Hill,us,1998,77.91571808,750
+11,Revolver,The Beatles,uk,1966,91.27316284,4372
+12,Thriller,Michael Jackson,us,1982,81.98548126,2040
+13,I Never Loved A Man The Way I Love You,Aretha Franklin,us,1967,80.04096985,562
+14,Exile On Main St.,The Rolling Stones,uk,1972,85.47253418,2257
+15,It Takes A Nation Of Millions To Hold Us Back,Public Enemy,us,1988,79.80415344,948
+16,London Calling,The Clash,uk,1979,86.89871979,3024
+17,My Beautiful Dark Twisted Fantasy,Kanye West,us,2010,84.79682159,2251
+18,Highway 61 Revisited,Bob Dylan,us,1965,88.56339264,2686
+19,To Pimp A Butterfly,Kendrick Lamar,us,2015,89.55146027,2152
+20,Kid A,Radiohead,uk,2000,89.24243164,4259
+21,Born To Run,Bruce Springsteen,us,1975,83.086586,1896
+22,Ready To Die,The Notorious B.I.G.,us,1994,81.79930115,767
+23,The Velvet Underground & Nico,The Velvet Underground & Nico,un,1967,88.58465576,3385
+24,Sgt. Pepper's Lonely Hearts Club Band,The Beatles,uk,1967,90.51435089,4389
+25,Tapestry,Carole King,us,1971,81.39603424,899
+26,Horses,Patti Smith,us,1975,81.4788208,1140
+27,Enter The Wu-Tang (36 Chambers),Wu-Tang Clan,us,1993,83.67979431,1193
+28,Voodoo,D'Angelo (US),us,2000,79.72294617,404
+29,The Beatles (The White Album),The Beatles,uk,1968,88.817482,3653
+30,Are You Experienced,The Jimi Hendrix Experience,us,1967,87.2554245,2383
+31,Kind Of Blue,Miles Davis,us,1959,89.07949829,2168
+32,Lemonade,Beyoncé,us,2016,77.38169861,599
+33,Back To Black,Amy Winehouse,uk,2006,79.35448456,1049
+34,Innervisions,Stevie Wonder,us,1973,85.63154602,1251
+35,Rubber Soul,The Beatles,uk,1965,88.21043396,3226
+36,Off The Wall,Michael Jackson,us,1979,79.08422089,976
+37,The Chronic,Dr. Dre,us,1992,79.32506561,692
+38,Blonde On Blonde,Bob Dylan,us,1966,87.80583954,2295
+39,Remain In Light,Talking Heads,us,1980,87.13123322,2163
+40,The Rise And Fall Of Ziggy Stardust And The Spiders From Mars,David Bowie,uk,1972,89.97977448,3358
+41,Let It Bleed,The Rolling Stones,uk,1969,85.39178467,2002
+42,OK Computer,Radiohead,uk,1997,91.9207077,5376
+43,The Low End Theory,A Tribe Called Quest,us,1991,84.87015533,1074
+44,Illmatic,Nas,us,1994,86.21884155,1500
+45,Sign 'O' The Times,Prince,us,1987,81.11908722,880
+46,Graceland,Paul Simon,us,1986,81.223732,1280
+47,Ramones,Ramones,us,1976,80.12863159,1239
+48,Legend,Bob Marley & The Wailers,jm,1984,84.15460205,1003
+49,Aquemini,OutKast,us,1998,82.63969421,715
+50,The Blueprint,Jay-Z,us,2001,77.91067505,686
+51,The Great Twenty-Eight,Chuck Berry,us,1982,79.58241272,298
+52,Station To Station,David Bowie,uk,1976,85.41765595,1452
+53,Electric Ladyland,The Jimi Hendrix Experience,us,1968,86.42446899,1879
+54,Star Time,James Brown,us,1991,75.96140289,121
+55,The Dark Side Of The Moon,Pink Floyd,uk,1973,92.6368103,5078
+56,Exile In Guyville,Liz Phair,us,1993,76.2690506,423
+57,The Band,The Band,ca,1969,81.09470367,933
+58,Untitled (Led Zeppelin IV),Led Zeppelin,uk,1971,89.74637604,3830
+59,Talking Book,Stevie Wonder,us,1972,80.83815002,630
+60,Astral Weeks,Van Morrison,uk,1968,84.66481781,1633
+61,Paid In Full,Eric B. & Rakim,us,1987,77.88461304,374
+62,Appetite For Destruction,Guns N' Roses,us,1987,78.51660919,1873
+63,Aja,Steely Dan,us,1977,82.97530365,932
+64,Stankonia,OutKast,us,2000,79.97975159,846
+65,James Brown Live At The Apollo,James Brown,us,1963,78.86467743,539
+66,A Love Supreme,John Coltrane,us,1965,87.2101059,1414
+67,Reasonable Doubt,Jay-Z,us,1996,76.47382355,498
+68,Hounds Of Love,Kate Bush,uk,1985,84.90756989,1285
+69,Jagged Little Pill,Alanis Morissette,ca,1995,76.68229675,961
+70,Straight Outta Compton,N.W.A,us,1988,78.67510986,685
+71,Exodus,Bob Marley & The Wailers,jm,1977,82.34667206,828
+72,Harvest,Neil Young,ca,1972,84.44321442,1626
+73,Loveless,My Bloody Valentine,un,1991,86.37153626,2346
+74,The College Dropout,Kanye West,us,2004,82.5954895,1357
+75,Lady Soul,Aretha Franklin,us,1968,79.33634186,468
+76,Superfly,Curtis Mayfield,us,1972,80.7002945,542
+77,Who's Next,The Who,uk,1971,86.25960541,2438
+78,The Sun Sessions,Elvis Presley,us,1976,79.70940399,280
+79,Blonde,Frank Ocean,us,2016,84.19574738,1032
+80,Never Mind The Bollocks; Here's The Sex Pistols,Sex Pistols,uk,1977,80.19299316,1783
+81,Beyoncé,Beyoncé,us,2013,71.88608551,327
+82,There's A Riot Goin' On,Sly & The Family Stone,us,1971,81.15682221,652
+83,Dusty In Memphis,Dusty Springfield,uk,1969,79.06726074,506
+84,Back In Black,AC/DC,au,1980,79.7674942,1790
+85,John Lennon/Plastic Ono Band,John Lennon,uk,1970,83.30566406,1351
+86,The Doors,The Doors,us,1967,86.95853424,2714
+87,Bitches Brew,Miles Davis,us,1970,84.45718384,1119
+88,Hunky Dory,David Bowie,uk,1971,87.21437836,2330
+89,Baduizm,Erykah Badu,us,1997,76.94322968,220
+90,After The Gold Rush,Neil Young,ca,1970,85.68178558,1702
+91,Darkness On The Edge Of Town,Bruce Springsteen,us,1978,82.09574127,1103
+92,Axis: Bold As Love,The Jimi Hendrix Experience,us,1967,83.57601929,1307
+93,Supa Dupa Fly,Missy Elliott,us,1997,71.82512665,106
+94,Fun House,The Stooges,us,1970,83.58890533,1043
+95,Take Care,Drake,ca,2011,70.89554596,411
+96,Automatic For The People,R.E.M.,us,1992,83.92510986,2106
+97,Master Of Puppets,Metallica,us,1986,83.35405731,1704
+98,Car Wheels On A Gravel Road,Lucinda Williams,us,1998,79.18307495,335
+99,Red,Taylor Swift,us,2012,64.23352051,260
+100,Music From Big Pink,The Band,ca,1968,80.92182159,918
