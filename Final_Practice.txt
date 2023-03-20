@@ -1,0 +1,153 @@
+CS161 Practice Final
+
+Assume that any libraries you need have been imported. You should only write the required code for a problem… don’t declare main() or do any other “boilerplate” work. The questions below are intended as practice writing code by hand and as a model for the style of question you can expect. 
+
+The real final will have a similar mix of questions. Two will deal with arrays (one easier and one harder). Two will deal with functions. One function question will deal with strings. The other will deal with structs. The questions below all represent the difficult end of the range of questions you are likely to see for each question type.
+
+1) Given the code below, write code to copy the items from nums into reverse in reverse order.  Example: 
+If nums is 5 2 7 9
+reverse should become 9 7 2 5
+
+int nums[size];  //size is a const defined earlier
+//mystery code to fill nums
+
+int reverse[size];
+
+for (int i = 0; i < size; i++)
+	reverse[i] = nums[size - 1 - i];
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2) Given the code below, write code that, for each element index X of list, determines how many other values in list match that item and stores the answer into the matches array at index X.
+Example:
+list is 
+7 5 7 3 7 3 7 6 6 9 7 93 6
+matches should be set to
+4 0 4 1 4 1 4 2 2 0 4 0 2
+(Each 7 has 4 matches, 5 has 0 matches, each 3 has one match, each 6 has 2 matches, and 9 and 93 each have 0 matches)
+int list[size]; //size is a const defined earlier
+int matches[size];
+//mystery code that fills list – pretend this exists
+
+for (int i = 0; i < size; i++) {
+	int match_count = 0;
+	for (int j = 0; j < size; j++) {
+		if (list[i] == list[j])
+			match_count++;
+	}
+	matches[i] = match_count;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Samples:
+Input: “Dear |name|.”
+Returns: “name”
+
+Input: “|city|, OR”
+Returns: “city”
+
+Input: “hello”
+Returns: “”
+
+Input: “hrmm | ”
+Returns: “”
+ 3) Write code for a function betweenBars. It should take a string as its parameter and, if it has two 
+“|”, return the text between them. Otherwise return the empty string “”. Examples of the desired behavior are shown to the right.
+
+Perfectly OK to use “int” instead of “string::size_type” in your code to save writing.
+
+string betweenBars(string s) {
+	int firstBarIdx = s.find("|");
+	if (firstBarIdx == -1 || firstBarIdx == s.size - 1)
+		return "";
+
+	string afterFirstBar = s.substr(firstBarIdx + 1);
+	int secondBarIdx = afterFirstBar.find("|");
+	if (secondBarIdx == -1)
+		return "";
+
+	return afterFirstBar.substr(0, secondBarIdx);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+String Function Reference: 
+strVar is string you want to manipulate
+int could be replaced with “string:size_type” to avoid compiler warnings
+
+int strVar.find(string str)
+char strVar.at(int index)
+string strVar.substr(int pos)
+int strVar.find(string str, int position)
+char strVar[int index]
+string strVar.substr(int pos, int len)
+strVar.insert(int pos, string str)
+strVar.append(string str)
+strVar.erase(int pos)
+int strVar.length()
+strVar.empty()
+strVar.erase(int pos, int len)
+
+4) Below is the definition of a structure Point that represents a location in two-dimensional space. 
+struct Point {
+        double x;
+        double y;
+};
+
+Write a function checkContains that takes three Points: a lower-left corner of a rectangle, the upper-right corner, and an arbitrary point. Return a Boolean value indicating whether the rectangle with the given corners would contain the third point (on the edge of rectangle counts as “contained”). 
+
+You do not need to worry about the two corners being out of order. The first will ALWAYS be the lower-left.
+
+Example (shown to right): 
+If Point p1 is at (5, 6), p2 is at (15, 16), p3 is at (10, 10), and p4 is at (0, 10) 
+bool result1 = checkContains(p1, p2, p3); //true. p3 is contained by the rectangle p1 & p2 define
+bool result2 = checkContains(p1, p2, p4); //false. p4 is NOT contained by the rectangle
+bool result3 = checkContains(p1, p2, p1); //true. p1 is contained by the rectangle (on border)
+
+bool checkContains(Point lowerLeft, Point upperRight, Point third) {
+	return (third.x >= lowerLeft.x && third.y >= lowerLeft.y
+		&& third.x <= upperRight.x && third.y <= upperRight.y);
+}
