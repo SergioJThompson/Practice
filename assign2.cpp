@@ -8,18 +8,10 @@
 
 int main()
 {
-    int a;
-    int b;
+    int val = 5;
+    std::cout << val;
 
-    std::cout << "Enter a: ";
-    std::cin >> a;
-
-    std::cout << "Enter b: ";
-    std::cin >> b;
-
-    int* ptrA = &a;
-    int* ptrB = &b;
-
-    std::cout << "Pointer A: " << ptrA;
-    std::cout << "Pointer B: " << ptrB;
+    int* ptr = &val;
+    *ptr += 5;
+    std::cout << val;
 }
