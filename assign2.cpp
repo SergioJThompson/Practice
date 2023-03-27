@@ -6,25 +6,26 @@
 #include <iostream>
 #include <cmath>
 
-bool is_prime(int x) {
-    for (int divisor = 2; divisor <= sqrt(x); divisor++) {
-        if (x % divisor == 0)
-            return false;
+int calc_gcd(int m, int n) {
+    int lowest = std::min(m, n);
+    int gcd = 1;
+    for (int div = lowest; div >= 2; div--) {
+        if (m % div == 0 && n % div == 0) {
+            gcd = div;
+            break;
+        }
     }
-    return true;
-}
-
-void print_primes(int n) {
-    int sum = 0;
-    for (int i = 2; i <= n; i++) {
-        if (is_prime(i))
-            sum += i;
-    }
-    std::cout << sum;
+    return gcd;
 }
 
 int main() {
+    int m;
     int n;
+    int gcd;
+
+    std::cin >> m;
     std::cin >> n;
-    print_primes(n);
+
+    gcd = calc_gcd(m, n);
+    std::cout << gcd;
 }
