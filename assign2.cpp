@@ -7,27 +7,21 @@
 #include <string>
 #include <cmath>
 
-bool is_palindrome(std::string s) {
-    std::string lowered;
-    for (int i = 0; i < s.size(); i++) {
-        if (isalpha(s[i]))
-            lowered += tolower(s[i]);
-    }
-
-    std::string lowered_reversed;
-    for (int i = 0; i < lowered.size(); i++) {
-        lowered_reversed = lowered[i] + lowered_reversed;
-    }
-
-    return (lowered == lowered_reversed);
+bool is_perfect_square(int x) {
+    double square = sqrt(x);
+    return (floor(square) == ceil(square));
 }
 
 int main() {
-    std::string s;
-    getline (std::cin, s);
+    int x;
+    int y;
 
-    if (is_palindrome(s))
-        std::cout << "It's a palindrome!";
-    else
-        std::cout << "Not a palindrome.";
+    std::cin >> x;
+    std::cin >> y;
+
+    for (int i = x; i <= y; i++) {
+        if (is_perfect_square(i)) {
+            std::cout << i << " ";
+        }
+    }
 }
