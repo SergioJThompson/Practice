@@ -7,21 +7,16 @@
 #include <string>
 #include <cmath>
 
-bool is_perfect_square(int x) {
-    double square = sqrt(x);
-    return (floor(square) == ceil(square));
-}
-
 int main() {
-    int x;
-    int y;
+    std::string s;
+    getline(std::cin, s);
 
-    std::cin >> x;
-    std::cin >> y;
-
-    for (int i = x; i <= y; i++) {
-        if (is_perfect_square(i)) {
-            std::cout << i << " ";
+    std::string no_vowels;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] != 'a' && s[i] != 'e' && s[i] != 'i' && s[i] != 'o' && s[i] != 'u') {
+            no_vowels += s[i];
         }
     }
+
+    std::cout << no_vowels;
 }
