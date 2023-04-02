@@ -8,22 +8,29 @@
 #include <cmath>
 #include <vector>
 
-using namespace std;
 
-vector<int> intersect(vector<int> v1, vector<int> v2) {
-    vector<int> intersection;
-    int min = std::min(v1.size(), v2.size());
-    for (int i = 0; i < min; i++) {
-        for (int j = 0; j < min; j++) {
-            if (v1[i] == v2[j]) {
-                intersection.push_back(v1[i]);
-                continue;
+std::string longest_subs_without_repeating_chars(std::string s) {
+    int longest_subs_start_idx = 0;
+    int longest_subs_size = 1;
+    for (int i = 0; i < s.size(); i++) {
+        std::vector<char> used;
+        used.push_back(s[i]);
+        for (int j = i+1; j < s.size(); j++) {
+            if (std::find(used.begin(), used.end(), s[j]) != used.end()) {
+                if (j-i > longest_subs_size) {
+                    longest_subs_start_idx = i;
+                    longest_subs_size = j-i;
+                }
+                break;
+            } else {
+                used.push_back(s[j]);
             }
         }
     }
-    return intersection;
+    return s.substr(longest_subs_start_idx, longest_subs_size);
 }
 
 int main() {
-
+    std::cout << longest_subs_without_repeating_chars("abcabcbb");
+    std::cout << longest_subs_without_repeating_chars("bbbbbb");
 }
