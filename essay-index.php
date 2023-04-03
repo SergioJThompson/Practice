@@ -126,6 +126,5 @@
 
 </body>
 
-<script src="/new-website/js/search.js"></script>
-    <!-- TODO: no images loading!!!!! Why did I have to change all urls???? -->
+<script src="../js/search.js"></script>
 </html>
